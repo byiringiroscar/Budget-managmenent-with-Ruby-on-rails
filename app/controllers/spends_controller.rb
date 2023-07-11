@@ -1,9 +1,9 @@
-class spendsController < ApplicationController
+class SpendsController < ApplicationController
   before_action :set_spend, only: %i[ show edit update destroy ]
 
   # GET /spends or /spends.json
   def index
-    @spends = spend.all
+    @spends = Spend.all
   end
 
   # GET /spends/1 or /spends/1.json
@@ -12,7 +12,7 @@ class spendsController < ApplicationController
 
   # GET /spends/new
   def new
-    @spend = spend.new
+    @spend = Spend.new
   end
 
   # GET /spends/1/edit
@@ -21,7 +21,7 @@ class spendsController < ApplicationController
 
   # POST /spends or /spends.json
   def create
-    @spend = spend.new(spend_params)
+    @spend = Spend.new(spend_params)
 
     respond_to do |format|
       if @spend.save
@@ -60,7 +60,7 @@ class spendsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_spend
-      @spend = spend.find(params[:id])
+      @spend = Spend.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
