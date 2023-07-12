@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
   def show
     authorize! :read, @category
     @category = Category.find(params[:id])
+    # @spends = current_user.spends.where(category_id: @category.id)
   rescue CanCan::AccessDenied
       redirect_to categories_url, notice: 'You can only see your category'
   end
@@ -31,7 +32,7 @@ class CategoriesController < ApplicationController
   # POST /categories or /categories.json
   def create
     @category = Category.new(category_params)
-
+    @category.author_id = current_user.id
     respond_to do |format|
       if @category.save
         format.html { redirect_to category_url(@category), notice: 'Category was successfully created.' }
@@ -45,18 +46,15 @@ class CategoriesController < ApplicationController
 
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
-    authorize! :update, @category
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to category_url(@category), notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: @category }
+        format.json { render :show, status: :ok, location: @spend }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_spend }
+        format.json { render json: @spend.errors, status: :unprocessable_spend }
       end
     end
-    rescue CanCan::AccessDenied
-      redirect_to categories_url, notice: 'You can only update your category'
   end
 
   # DELETE /categories/1 or /categories/1.json

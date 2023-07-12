@@ -8,3 +8,20 @@
 
   <%= button_to "Destroy this category", @category, method: :delete %>
 </div>
+
+<div>
+  <h1>Spends for this category</h1>
+  <% @category.spends.each do |spend| %>
+    <%= render spend %>
+    <p>
+      <%= link_to "Show this spend", category_spend_path(@category, spend) %>
+      <%= link_to "Edit this spend", edit_category_spend_path(@category, spend) %>
+      <%= button_to "Destroy this spend", category_spend_path(@category, spend), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+
+  <% end %>
+
+
+  <%= link_to "New spend for this category", new_category_spend_path(@category) %>
+  
+  </div>

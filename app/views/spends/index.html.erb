@@ -6,9 +6,9 @@
   <% @spends.each do |spend| %>
     <%= render spend %>
     <p>
-      <%= link_to "Show this spend", spend %>
+      <%= link_to "Show this spend", category_spend_path(@category, spend) %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New spend", new_spend_path %>
+<%= link_to "New spend", new_category_spend_path %>

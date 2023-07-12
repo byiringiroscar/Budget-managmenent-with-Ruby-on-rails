@@ -3,8 +3,8 @@
 <%= render @spend %>
 
 <div>
-  <%= link_to "Edit this spend", edit_spend_path(@spend) %> |
-  <%= link_to "Back to spends", spends_path %>
+  <%= link_to "Edit this spend", edit_category_spend_path(@category, @spend) %> |
+  <%= link_to "Back to spends", category_path(@category) %>
 
-  <%= button_to "Destroy this spend", @spend, method: :delete %>
+  <%= button_to "Destroy this spend", category_spend_path(@category, @spend), method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
