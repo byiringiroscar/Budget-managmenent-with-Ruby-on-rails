@@ -1,6 +1,7 @@
 class SpendsController < ApplicationController
   include CanCan::Ability
   before_action :set_spend, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   # GET /spends or /spends.json
   def index

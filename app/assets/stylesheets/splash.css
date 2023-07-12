@@ -1,0 +1,43 @@
+.splash-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.splash-container h1{
+    font-family: 'Proxima Nova', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #434b54;
+}
+
+.authentication-link{
+    position: absolute;
+    bottom: 10px;
+    padding: 0 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.authentication-link .auth{
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 14px 0;
+    background-color: #3778c2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: white;
+    font-family: 'Proxima Nova', sans-serif;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+
+}
