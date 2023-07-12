@@ -1,6 +1,5 @@
-include CanCan::Ability
-
 class SpendsController < ApplicationController
+  include CanCan::Ability
   before_action :set_spend, only: %i[show edit update destroy]
 
   # GET /spends or /spends.json
@@ -14,10 +13,10 @@ class SpendsController < ApplicationController
     @category = Category.find(params[:category_id])
     @spend = @category.spends.find(params[:id])
     authorize! :read, @spend
-    rescue CanCan::AccessDenied
-      redirect_to categories_url, notice: 'You can only see your spend'
-    rescue ActiveRecord::RecordNotFound
-  redirect_to categories_url, notice: 'Category or spend not found'
+  rescue CanCan::AccessDenied
+    redirect_to categories_url, notice: 'You can only see your spend'
+  rescue ActiveRecord::RecordNotFound
+    redirect_to categories_url, notice: 'Category or spend not found'
   end
 
   # GET /spends/new
@@ -36,7 +35,6 @@ class SpendsController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     redirect_to categories_url, notice: 'Category or spend not found'
   end
-  
 
   # POST /spends or /spends.json
   def create
