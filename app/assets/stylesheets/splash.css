@@ -29,15 +29,21 @@
     font-size: 0.8rem;
     font-weight: 600;
     padding: 14px 0;
-    background-color: #3778c2;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    color: white;
+    color: #434b54;
     font-family: 'Proxima Nova', sans-serif;
     text-decoration: none;
     font-weight: 500;
     font-size: 15px;
+    transition: 0.3s;
 
+}
+
+.authentication-link .auth.active{
+    background-color: #3778c2;
+    color: white;
+    transition: 0.3s;
 }
