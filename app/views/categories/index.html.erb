@@ -1,12 +1,13 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Categories</h1>
+<h4>Total spending: <%= @total %>$ </h4>
 
 <div id="categories">
   <% @categories.each do |category| %>
     <%= render category %>
     <p>
-      <%= link_to "Show this category", category %>
+      <%= link_to "Show this spends in this category", category %>
     </p>
   <% end %>
 </div>
