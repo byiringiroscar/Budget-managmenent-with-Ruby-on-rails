@@ -1,13 +1,20 @@
+include CanCan::Ability
+
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[show edit update destroy]
 
   # GET /categories or /categories.json
   def index
-    @categories = Category.all
+    @categories = Category.all.accessible_by(current_ability)
   end
 
   # GET /categories/1 or /categories/1.json
-  def show; end
+  def show
+    authorize! :read, @category
+    @category = Category.find(params[:id])
+  rescue CanCan::AccessDenied
+      redirect_to categories_url, notice: 'You can only see your category'
+  end
 
   # GET /categories/new
   def new
@@ -15,7 +22,11 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1/edit
-  def edit; end
+  def edit
+    authorize! :update, @category
+    rescue CanCan::AccessDenied
+      redirect_to categories_url, notice: 'You can only edit your category'
+  end
 
   # POST /categories or /categories.json
   def create
@@ -34,6 +45,7 @@ class CategoriesController < ApplicationController
 
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
+    authorize! :update, @category
     respond_to do |format|
       if @category.update(category_params)
         format.html { redirect_to category_url(@category), notice: 'Category was successfully updated.' }
@@ -43,16 +55,21 @@ class CategoriesController < ApplicationController
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
+    rescue CanCan::AccessDenied
+      redirect_to categories_url, notice: 'You can only update your category'
   end
 
   # DELETE /categories/1 or /categories/1.json
   def destroy
+    authorize! :destroy, @category
     @category.destroy
 
     respond_to do |format|
       format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
       format.json { head :no_content }
     end
+    rescue CanCan::AccessDenied
+      redirect_to categories_url, notice: 'You can only delete your category'
   end
 
   private

@@ -3,7 +3,7 @@ class SpendsController < ApplicationController
 
   # GET /spends or /spends.json
   def index
-    @spends = Spend.all
+    @spends = Spend.all.accessible_by(current_ability)
   end
 
   # GET /spends/1 or /spends/1.json
