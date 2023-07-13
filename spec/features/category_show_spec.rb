@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Check for Category info', type: :feature do
-include Devise::Test::IntegrationHelpers
+  include Devise::Test::IntegrationHelpers
 
   before do
     user = FactoryBot.create(:user)
@@ -13,7 +13,7 @@ include Devise::Test::IntegrationHelpers
     expect(page).to have_content('Most recent')
   end
 
-    scenario 'Should show the Total spend' do
-        expect(page).to have_content('Total spend')
-    end
+  scenario 'Should show the Total spend' do
+    expect(page).to have_content('Total spend')
+  end
 end
