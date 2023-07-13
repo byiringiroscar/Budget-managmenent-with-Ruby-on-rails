@@ -5,8 +5,8 @@ RSpec.feature 'Check for Categories', type: :feature do
 
   background do
     user = FactoryBot.create(:user)
-    sign_in(user) # Log in the user using Devise test helper
-    visit authenticated_root_path # Visit the authenticated root path
+    sign_in(user)
+    visit authenticated_root_path 
   end
 
   scenario 'Should show the correct title' do
