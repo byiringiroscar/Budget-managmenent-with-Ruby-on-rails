@@ -1,12 +1,10 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 @font-face {
-    font-family: 'Proxima Nova';
-    src: url('/assets/fonts/Proxima Nova Font.otf') format('opentype');
-  }
-  
-
+  font-family: 'Proxima Nova';
+  src: url('/assets/fonts/Proxima Nova Font.otf') format('opentype');
+}
