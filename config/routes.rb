@@ -11,4 +11,7 @@ Rails.application.routes.draw do
     root to: 'categories#index', as: :authenticated_root
   end
 
+  # Invalid route and record not found handling
+  get '*unmatched_route', to: 'application#routing_error'
+
 end
