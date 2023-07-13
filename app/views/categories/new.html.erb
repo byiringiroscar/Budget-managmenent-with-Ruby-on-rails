@@ -1,16 +1,37 @@
-<h1>New category</h1>
+<div class="form-container">
+  <div class='header-container'>
+      <%= link_to unauthenticated_root_path, class: "back-root" do %>
+          <span class="material-symbols-outlined">
+          arrow_back
+          </span>
+        <% end %>
+      <h4>New category</h4>
+      <%= link_to unauthenticated_root_path, class: "menu" do %>
+          <span class="material-symbols-outlined">
+        menu
+        </span>
+        <% end %>
+      
+
+        
+  </div>
 
 <%= form_for(@category) do |f| %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :icon %>
-    <%= f.text_field :icon %>
-  </div>
+   <% if @category.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h2>
+
+        <ul>
+          <% @category.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <%= f.text_field :name, placeholder: 'name' %>
+  <%= f.text_field :icon, placeholder: 'url link of image' %>
   <div class="actions">
-    <%= f.submit "Create category" %>
+    <%= f.submit "Create category", class: 'submit-btn' %>
   </div>
 <% end %>
 
@@ -18,4 +39,6 @@
 
 <div>
   <%= link_to "Back to categories", categories_path %>
+</div>
+
 </div>

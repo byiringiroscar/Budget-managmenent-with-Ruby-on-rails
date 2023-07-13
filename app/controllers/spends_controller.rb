@@ -1,6 +1,7 @@
 class SpendsController < ApplicationController
   include CanCan::Ability
   before_action :set_spend, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   # GET /spends or /spends.json
   def index
@@ -47,7 +48,7 @@ class SpendsController < ApplicationController
         format.html { redirect_to category_url(@category), notice: 'spend was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else
-        format.html { render :new, status: :unprocessable_spend }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @spend.errors, status: :unprocessable_spend }
       end
     end

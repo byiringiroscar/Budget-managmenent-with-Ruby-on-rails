@@ -1,15 +1,44 @@
-<p style="color: green"><%= notice %></p>
+<div class='category-section'>
+    <div class='header-category'>
+        <div class='upper-header'>
+          <%= link_to unauthenticated_root_path, class: "back-root" do %>
+              <span class="material-symbols-outlined">
+              arrow_back
+              </span>
+          <% end %>
+          <h4>Categories</h4>
+          <%= link_to unauthenticated_root_path, class: "menu" do %>
+                <span class="material-symbols-outlined">
+              menu
+              </span>
+          <% end %>
+        </div>
+        <div class='lower-header'>
+            <h4>Most recent</h4>
+            <h6>
+              <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+            </h6>
+        </div>
+    </div>
+    <div class='stat'>
+      <p>Total spend </p>
+      <p class='total-amount'>$<%= @total %></p>
+    </div>
+    <p style="color: green"><%= notice %></p>
+    <div class='category-list'>
+      <% @categories.each do |category| %>
+        <%= link_to category_path(category), class: 'category' do %>
+          <img src='<%= category.icon %>'>
+          <div class='category-info'>
+            <h4><%= category.name %></h4>
+            <p><%= category.created_at.strftime("%Y-%m-%d") %></p>
+          </div>
+          <p class='amount'>$<%= current_user.spends.where(category_id: category.id).sum(:amount) %></p>
+        <% end %>
 
-<h1>Categories</h1>
-<h4>Total spending: <%= @total %>$ </h4>
-
-<div id="categories">
-  <% @categories.each do |category| %>
-    <%= render category %>
-    <p>
-      <%= link_to "Show this spends in this category", category %>
-    </p>
-  <% end %>
+      <% end %>
+    </div>
+    <div class='action-add'>
+      <%= link_to "New category", new_category_path, class: 'btn-add' %>
+    </div>
 </div>
-
-<%= link_to "New category", new_category_path %>
