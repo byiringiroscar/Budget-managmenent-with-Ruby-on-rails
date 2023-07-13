@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[show edit update destroy]
   before_action :authenticate_user!
-  rescue_from CanCan::AccessDenied do |exception|
+  rescue_from CanCan::AccessDenied do |_exception|
     redirect_to categories_url, notice: 'You can only see your category'
   end
   # GET /categories or /categories.json
@@ -15,12 +15,11 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     authorize! :read, @category
-  
+
     # amount for this category according to the spend
     @amount_category = current_user.spends.where(category_id: @category.id).sum(:amount)
     # @spends = current_user.spends.where(category_id: @category.id)
   end
-  
 
   # GET /categories/new
   def new
