@@ -1,9 +1,31 @@
-<h1>New spend</h1>
+<div class='category-section'>
+    <div class='header-category'>
+        <div class='upper-header'>
+          <%= link_to unauthenticated_root_path, class: "back-root" do %>
+              <span class="material-symbols-outlined">
+              arrow_back
+              </span>
+          <% end %>
+          <h4>New spend</h4>
+          <%= link_to unauthenticated_root_path, class: "menu" do %>
+                <span class="material-symbols-outlined">
+              menu
+              </span>
+          <% end %>
+        </div>
+        <div class='lower-header'>
+            <h4>Most recent</h4>
+            <h6>Most ancient</h6>
+        </div>
+    </div>
 
 <%= render "form", spend: @spend %>
 
 <br>
 
-<div>
+<div class='back-spend'>
   <%= link_to "Back to spends", category_path(@category) %>
 </div>
+
+</div>
+

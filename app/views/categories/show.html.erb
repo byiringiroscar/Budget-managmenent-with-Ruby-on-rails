@@ -1,29 +1,37 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @category %>
-
-<h3>Total amount spent on this category: <%= @amount_category %>$ </h3>
-
-<div>
-  <%= link_to "Edit this category", edit_category_path(@category) %> |
-  <%= link_to "Back to categories", categories_path %>
-
-  <%= button_to "Destroy this category", @category, method: :delete %>
+<div class='category-section'>
+    <div class='header-category'>
+        <div class='upper-header'>
+          <%= link_to unauthenticated_root_path, class: "back-root" do %>
+              <span class="material-symbols-outlined">
+              arrow_back
+              </span>
+          <% end %>
+          <h4><%= @category.name %></h4>
+          <%= link_to unauthenticated_root_path, class: "menu" do %>
+                <span class="material-symbols-outlined">
+              menu
+              </span>
+          <% end %>
+        </div>
+        <div class='lower-header'>
+            <h4>Most recent</h4>
+            <h6>Most ancient</h6>
+        </div>
+    </div>
+    <div class='stat'>
+      <p>Total spend </p>
+      <p class='total-amount'>$<%= @amount_category %></p>
+    </div>
+    <p style="color: green"><%= notice %></p>
+    <div class='category-list'>
+      <% @category.spends.each do |spend| %>
+          <div class='category spend'>
+            <p class='title'><%= spend.name %></p>
+            <p class='amount'>$<%= spend.amount %></p>
+          </div>
+      <% end %>
+    </div>
+    <div class='action-add'>
+      <%= link_to "New Spend", new_category_spend_path(@category), class: 'btn-add' %>
+    </div>
 </div>
-
-<div>
-  <h1>Spends for this category</h1>
-  <% @category.spends.each do |spend| %>
-    <%= render spend %>
-    <p>
-      <%= link_to "Show this spend", category_spend_path(@category, spend) %>
-      <%= link_to "Edit this spend", edit_category_spend_path(@category, spend) %>
-      <%= button_to "Destroy this spend", category_spend_path(@category, spend), method: :delete, data: { confirm: 'Are you sure?' } %>
-    </p>
-
-  <% end %>
-
-
-  <%= link_to "New spend for this category", new_category_spend_path(@category) %>
-  
-  </div>
