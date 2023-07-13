@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validate :password_confirmation_match
+  # validate :password_confirmation_match
 
   # def password_confirmation_match
   # if password != password_confirmation
