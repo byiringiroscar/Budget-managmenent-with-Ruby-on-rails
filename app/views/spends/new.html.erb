@@ -1,7 +1,7 @@
 <div class='category-section'>
     <div class='header-category'>
         <div class='upper-header'>
-          <%= link_to unauthenticated_root_path, class: "back-root" do %>
+          <%= link_to  category_path(@category), class: "back-root" do %>
               <span class="material-symbols-outlined">
               arrow_back
               </span>
@@ -15,7 +15,10 @@
         </div>
         <div class='lower-header'>
             <h4>Most recent</h4>
-            <h6>Most ancient</h6>
+            <h6>
+              <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+            </h6>
+
         </div>
     </div>
 

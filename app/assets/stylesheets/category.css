@@ -57,6 +57,16 @@
     color: white;
 }
 
+.lower-header h6 button{
+    border: none;
+    font-family: 'Proxima Nova', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 .stat{
     height: 10%;
     width: 100%;

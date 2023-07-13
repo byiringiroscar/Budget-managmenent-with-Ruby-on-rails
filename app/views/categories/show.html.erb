@@ -15,7 +15,9 @@
         </div>
         <div class='lower-header'>
             <h4>Most recent</h4>
-            <h6>Most ancient</h6>
+            <h6>
+              <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+            </h6>
         </div>
     </div>
     <div class='stat'>
