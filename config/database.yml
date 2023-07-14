@@ -31,7 +31,7 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV["DATABASE_URL"] %>
+  url: <%= ENV['DATABASE_URL'] %>
   database: budget
   host: localhost
   port: 5432
